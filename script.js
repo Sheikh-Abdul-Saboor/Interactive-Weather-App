@@ -2,9 +2,9 @@ async function getWeather() {
     const city = document.getElementById("city").value;
     const apiKey = "f3aed8e2b05599a4ac9d76f69bbec33c"; // replace with your OpenWeatherMap API key
   
-    const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-  
+    const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;//current weather data
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;// next days data
+   
     const resultDiv = document.getElementById("weather-result");
     const forecastDiv = document.getElementById("forecast");
     const forecastTitle = document.getElementById("forecast-title");
@@ -24,15 +24,18 @@ async function getWeather() {
       `;
   
       // 5-Day Forecast
-      const forecastResponse = await fetch(forecastUrl);
-      const forecastData = await forecastResponse.json();
+      const forecastResponse = await fetch(forecastUrl);//Calls API for 5-day forecast.
+      const forecastData = await forecastResponse.json();//Converts to JSON (forecastData).
   
       forecastDiv.innerHTML = "";
       forecastTitle.innerText = "5-Day Forecast";
   
       // Pick one forecast per day at 12:00:00
       const dailyData = forecastData.list.filter(item => item.dt_txt.includes("12:00:00"));
-  
+  //Loops over daily forecasts.
+//Converts timestamp to a readable date.
+//Fetches weather icon.
+//Shows date, icon, temperature, and description in a small card.
       dailyData.forEach(day => {
         const date = new Date(day.dt * 1000);
         const options = { weekday: 'short', month: 'short', day: 'numeric' };
