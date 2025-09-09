@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
   font-family: 'Poppins', sans-serif;
   display: flex;
@@ -19,18 +20,12 @@ body {
 
 .container {
   text-align: center;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.25);
   width: 90%;
   max-width: 420px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
 
 h1 {
@@ -39,10 +34,15 @@ h1 {
   color: #333;
 }
 
+.input-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
 input {
   padding: 12px;
   width: 70%;
-  margin-bottom: 10px;
   border-radius: 12px 0 0 12px;
   border: 1px solid #ccc;
   outline: none;
@@ -65,17 +65,22 @@ button:hover {
   transform: scale(1.05);
 }
 
+#loading {
+  display: none;
+  font-size: 1.1rem;
+  margin: 10px 0;
+  color: #555;
+}
+
 .card {
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 15px;
   background: #f9f9f9;
   border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  background: #f1f1f1;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s forwards;
 }
 
 .forecast-container {
@@ -90,7 +95,13 @@ button:hover {
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s forwards;
 }
 
 .forecast-day:hover {
@@ -98,9 +109,28 @@ button:hover {
   box-shadow: 0 5px 12px rgba(0,0,0,0.2);
 }
 
+.forecast-day h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
 .forecast-day img {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 5px;
+}
+
+.forecast-day p {
+  margin: 3px 0;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 500px) {
